@@ -1,0 +1,9 @@
+david_usdt_balance:
+  user: david
+  token: usdt
+  locked: 2
+
+adam_usdt_balance:
+  user: adam
+  token: usdt
+  locked: 0
