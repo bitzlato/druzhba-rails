@@ -1,0 +1,7 @@
+david_and_adam_deal:
+  seller: david
+  buyer: adam
+  offer: david_usdt_offer
+  fee: 0.1
+  locked: 1
+  state: initial
