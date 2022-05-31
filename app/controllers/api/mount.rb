@@ -9,5 +9,6 @@ module Api
     version 'v1', using: :accept_version_header
 
     mount Currencies
+    mount PaymentMethods
   end
 end
