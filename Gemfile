@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'grape'
+gem 'grape-entity'
+
 group :development, :test do
   gem 'brakeman'
   gem 'bundler-audit'
