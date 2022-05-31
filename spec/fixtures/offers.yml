@@ -1,0 +1,11 @@
+david_usdt_offer:
+  user: david
+  token: usdt
+  currency: rub
+  payment_method: by_card
+  balance: david_usdt_balance
+  rate: 1
+  min: 0.5
+  max: 1.5
+  active: true
+

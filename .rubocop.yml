@@ -1,0 +1,27 @@
+inherit_from: .rubocop_todo.yml
+require:
+   - rubocop-rails
+   - rubocop-rspec
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/**/**'
+    - 'db/schema.rb'
+    - 'vendor/bundle/**/*'
+Style/Documentation:
+  Enabled: false
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/**'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/**'
+RSpec/MultipleExpectations:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  Exclude:
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'config.ru'
+    - 'config/**/**'
