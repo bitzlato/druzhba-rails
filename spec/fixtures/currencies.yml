@@ -2,3 +2,7 @@ rub:
   name: 'Russian ruble'
   symbol: 'RUB'
   logo: 'rub.png'
+usd:
+  name: 'American dollar'
+  symbol: 'USD'
+  logo: 'usd.png'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_30_135422) do
+ActiveRecord::Schema.define(version: 2022_06_02_130034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,16 @@ ActiveRecord::Schema.define(version: 2022_05_30_135422) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "rates", force: :cascade do |t|
+    t.bigint "token_id", null: false
+    t.bigint "currency_id", null: false
+    t.decimal "rate", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["currency_id"], name: "index_rates_on_currency_id"
+    t.index ["token_id"], name: "index_rates_on_token_id"
+  end
+
   create_table "tokens", force: :cascade do |t|
     t.string "address", null: false
     t.bigint "chain_id", null: false
@@ -114,4 +124,6 @@ ActiveRecord::Schema.define(version: 2022_05_30_135422) do
   add_foreign_key "offers", "payment_methods"
   add_foreign_key "offers", "tokens"
   add_foreign_key "offers", "users"
+  add_foreign_key "rates", "currencies"
+  add_foreign_key "rates", "tokens"
 end

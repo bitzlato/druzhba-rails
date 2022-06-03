@@ -10,5 +10,6 @@ module Api
 
     mount Currencies
     mount PaymentMethods
+    mount Tokens
   end
 end
