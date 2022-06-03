@@ -16,6 +16,7 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/**'
+    - 'app/controllers/api/**/**'
 RSpec/MultipleExpectations:
   Enabled: false
 Style/FrozenStringLiteralComment:

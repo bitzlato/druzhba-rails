@@ -35,6 +35,7 @@ group :development, :test do
   gem 'brakeman'
   gem 'bundler-audit'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
