@@ -1,0 +1,4 @@
+usdt_usd_rate:
+  token: usdt
+  currency: usd
+  rate: 0.99
