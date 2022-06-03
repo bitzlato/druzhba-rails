@@ -7,5 +7,5 @@ class Deal < ApplicationRecord
 
   validates :fee, :locked, numericality: true
 
-  enum state: { initial: 0 }
+  enum state: { initial: 0, prepared: 1 }
 end
