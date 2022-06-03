@@ -5,3 +5,4 @@ david_and_adam_deal:
   fee: 0.1
   locked: 1
   state: initial
+  in_use: true

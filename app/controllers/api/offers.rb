@@ -17,12 +17,12 @@ module Api
 
       get do
         collection = Offer.includes(:currency, :balance, :payment_method, token: [rate: :currency])
-        collection = collection.where(user_id: params[:user_id]) if params.key?(:user_id)
-        collection = collection.where(token_id: params[:token_id]) if params.key?(:token_id)
-        collection = collection.where(payment_method_id: params[:method_id]) if params.key?(:method_id)
-        collection = collection.where(currency_id: params[:currency_id]) if params.key?(:currency_id)
-        collection = collection.order(params[:sort_by_desc] => :desc) if params.key?(:sort_by_desc)
-        collection = collection.order(params[:sort_by_asc] => :desc) if params.key(:sort_by_asc)
+        collection = collection.where(user_id: params[:user_id]) if params[:user_id].present?
+        collection = collection.where(token_id: params[:token_id]) if params[:token_id].present?
+        collection = collection.where(payment_method_id: params[:method_id]) if params[:method_id].present?
+        collection = collection.where(currency_id: params[:currency_id]) if params[:currency_id].present?
+        collection = collection.order(params[:sort_by_desc] => :desc) if params[:sort_by_desc].present?
+        collection = collection.order(params[:sort_by_asc] => :desc) if params[:sort_by_asc].present?
 
         present collection, with: Entities::Offer
       end
