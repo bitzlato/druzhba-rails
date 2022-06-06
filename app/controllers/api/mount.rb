@@ -17,5 +17,7 @@ module Api
     mount Tokens
     mount Offers
     mount Deals
+
+    add_swagger_documentation format: :json, mount_path: 'swagger'
   end
 end
