@@ -4,3 +4,9 @@ david:
 adam:
   eth_address: '0xf58x50911268d7ea6aedbaf37898b801e0de46dd'
   uid: 'x6w7'
+arbiter:
+  eth_address: '0x7e5b50911268d7ea6aedbaf37898b801e0de74cd'
+  uid: 'u1h4'
+piter:
+  eth_address: '0x675b50911268d7ea6aedbaf37898b801e0de82x'
+  uid: 'p3x5'

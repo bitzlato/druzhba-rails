@@ -6,4 +6,8 @@ class Token < ApplicationRecord
 
   # TO-DО change to has_many
   has_one :rate, dependent: :destroy
+
+  def arbiter
+    @arbiter ||= User.find_by(eth_address: arbiter_address)
+  end
 end
