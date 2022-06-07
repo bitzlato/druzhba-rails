@@ -12,6 +12,8 @@ module Api
       rack_response('{ "status": 404, "message": "Not Found." }', 404)
     end
 
+    helpers Helpers::JwtInfo
+
     mount Currencies
     mount PaymentMethods
     mount Tokens
