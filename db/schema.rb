@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_07_082937) do
+ActiveRecord::Schema.define(version: 2022_06_07_120854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 2022_06_07_082937) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["token_id"], name: "index_balances_on_token_id"
     t.index ["user_id"], name: "index_balances_on_user_id"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.bigint "deal_id"
+    t.string "status", default: "initial", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["deal_id"], name: "index_chats_on_deal_id"
   end
 
   create_table "currencies", force: :cascade do |t|
@@ -56,6 +64,17 @@ ActiveRecord::Schema.define(version: 2022_06_07_082937) do
     t.index ["buyer_id"], name: "index_deals_on_buyer_id"
     t.index ["offer_id"], name: "index_deals_on_offer_id"
     t.index ["seller_id"], name: "index_deals_on_seller_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "message"
+    t.bigint "author_id", null: false
+    t.bigint "chat_id", null: false
+    t.integer "to", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_messages_on_author_id"
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
   end
 
   create_table "offers", force: :cascade do |t|
@@ -111,7 +130,7 @@ ActiveRecord::Schema.define(version: 2022_06_07_082937) do
     t.string "eth_address", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "uid", null: false
+    t.string "uid", default: "", null: false
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
@@ -121,6 +140,8 @@ ActiveRecord::Schema.define(version: 2022_06_07_082937) do
   add_foreign_key "deals", "offers"
   add_foreign_key "deals", "users", column: "buyer_id"
   add_foreign_key "deals", "users", column: "seller_id"
+  add_foreign_key "messages", "chats"
+  add_foreign_key "messages", "users", column: "author_id"
   add_foreign_key "offers", "balances"
   add_foreign_key "offers", "currencies"
   add_foreign_key "offers", "payment_methods"

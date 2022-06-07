@@ -8,4 +8,6 @@ class Offer < ApplicationRecord
   belongs_to :balance
 
   validates :rate, :min, :max, numericality: true
+
+  delegate :arbiter, to: :token
 end

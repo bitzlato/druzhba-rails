@@ -19,6 +19,8 @@ Metrics/BlockLength:
     - 'app/controllers/api/**/**'
 RSpec/MultipleExpectations:
   Enabled: false
+RSpec/NestedGroups:
+  Max: 6
 Style/FrozenStringLiteralComment:
   Enabled: true
   Exclude:

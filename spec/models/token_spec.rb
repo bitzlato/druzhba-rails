@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Token, type: :model do
-  fixtures :tokens
+  fixtures :tokens, :users
 
   let(:usdt) { tokens(:usdt) }
 
@@ -58,5 +58,9 @@ RSpec.describe Token, type: :model do
       expect(usdt).not_to be_valid
       expect(usdt.errors).to have_key(:decimals)
     end
+  end
+
+  describe '#arbiter' do
+    it { expect(usdt.arbiter).to eq users(:arbiter) }
   end
 end
