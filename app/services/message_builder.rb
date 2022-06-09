@@ -19,6 +19,7 @@ class MessageBuilder
       @new_message.chat = Chat.where(deal: deal).first_or_create!
       @new_message.save
     end
+    broadcast_new_message if new_message.persisted?
   end
 
   private
@@ -30,5 +31,15 @@ class MessageBuilder
   # seller или buyer могут отправлять только c типом `both` или `arbiter`
   def validated_to
     to.to_sym.in?([:seller, :buyer]) && !author.arbiter_of?(deal) ? :both : to
+  end
+
+  def broadcast_new_message
+    deal.chat_members.each do |chat_member|
+      next if chat_member == author
+      next unless new_message.available_for?(chat_member)
+
+      ActionCable.server.broadcast Deal.chat_identifier_for(deal.id, chat_member),
+                                   Api::Entities::Message.represent(new_message, requester: chat_member)
+    end
   end
 end
