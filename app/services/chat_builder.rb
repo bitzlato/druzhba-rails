@@ -24,7 +24,7 @@ class ChatBuilder
 
   # rubocop:disable Metrics/AbcSize
   def filtered_messages
-    return [] if chat.blank?
+    return Message.none if chat.blank?
 
     return chat.messages.where(to: [:both, arbiter_filter]) if user.arbiter_of?(deal)
     return chat.messages.for_buyer if user.buyer_of?(deal)
