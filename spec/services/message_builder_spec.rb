@@ -20,6 +20,10 @@ RSpec.describe MessageBuilder do
           .to change { Chat.where(deal: deal).count }.by(1)
           .and change { author.messages.arbiter.count }.by(1)
       end
+
+      it 'broadcast message to arbiter' do
+        expect { builder.save }.to have_broadcasted_to("deal_#{deal.id}_chat_for_#{users(:arbiter).uid}")
+      end
     end
 
     context 'when validating to' do
