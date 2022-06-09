@@ -1,3 +1,6 @@
 david_and_adam_deal_chat:
   deal: david_and_adam_deal
   status: 'active'
+david_and_mike_deal_chat:
+  deal: david_and_mike_deal
+  status: 'active'

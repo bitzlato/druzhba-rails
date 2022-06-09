@@ -12,6 +12,8 @@ module Api
       expose :type, documentation: { type: String, desc: 'Type of message (In|Out)' } do |message, options|
         message.author_id == options[:requester].id ? 'Out' : 'In'
       end
+
+      expose :file, using: Api::Entities::MessageFile, if: ->(message) { message['file'].present? }
     end
   end
 end
