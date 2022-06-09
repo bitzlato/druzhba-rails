@@ -8,7 +8,7 @@ module Api
       end
 
       expose :currency, documentation: { type: String, desc: 'A name of currency' } do |instance, _|
-        instance.currency.name
+        instance.currency.symbol
       end
     end
   end
