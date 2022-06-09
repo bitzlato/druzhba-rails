@@ -22,3 +22,8 @@ arbiter_message_to_david:
   message: 'Give him a money'
   to: seller
   created_at: '2020-01-01 10:03'
+piter_file_message:
+  author: piter
+  chat: david_and_mike_deal_chat
+  file: file_fixture("photo.png")
+  file_title: 'photo.png'

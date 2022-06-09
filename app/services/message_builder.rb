@@ -14,7 +14,7 @@ class MessageBuilder
   end
 
   def save
-    @new_message = Message.new(message: message, author: author, to: validated_to)
+    @new_message = build_message
     Message.transaction do
       @new_message.chat = Chat.where(deal: deal).first_or_create!
       @new_message.save
@@ -22,6 +22,10 @@ class MessageBuilder
   end
 
   private
+
+  def build_message
+    Message.new(message: message, author: author, to: validated_to)
+  end
 
   # seller или buyer могут отправлять только c типом `both` или `arbiter`
   def validated_to

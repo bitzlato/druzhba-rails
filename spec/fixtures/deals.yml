@@ -15,3 +15,12 @@ david_and_piter_deal:
   locked: 1
   state: initial
   in_use: true
+
+david_and_mike_deal:
+  seller: david
+  buyer: mike
+  offer: david_usdt_offer
+  fee: 0.1
+  locked: 1
+  state: initial
+  in_use: true
