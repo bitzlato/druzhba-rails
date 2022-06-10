@@ -59,9 +59,13 @@ module Api
         }
       )
 
+      expose :address, documentation: { type: String, desc: 'User address' } do |offer|
+        offer.user.eth_address
+      end
       expose :payment_method, using: Api::Entities::PaymentMethod, as: :method
       expose :currency, using: Api::Entities::Currency
       expose :token, using: Api::Entities::Token
+      expose :balance, using: Api::Entities::Balance
     end
   end
 end

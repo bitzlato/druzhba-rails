@@ -44,6 +44,14 @@ module Api
       )
 
       expose(
+        :decimals,
+        documentation: {
+          type: Integer,
+          desc: 'Decimals'
+        }
+      )
+
+      expose(
         :p2p_address,
         documentation: {
           type: String,

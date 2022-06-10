@@ -18,6 +18,8 @@ RSpec.describe Api::Offers, type: :request do
       terms
       token
       active
+      address
+      balance
     ]
   end
 

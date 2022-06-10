@@ -16,7 +16,7 @@ module Api
       end
 
       get do
-        collection = Offer.includes(:currency, :balance, :payment_method, token: [rate: :currency])
+        collection = Offer.includes(:user, :currency, :balance, :payment_method, token: [rate: :currency])
         collection = collection.where(user_id: params[:user_id]) if params[:user_id].present?
         collection = collection.where(token_id: params[:token_id]) if params[:token_id].present?
         collection = collection.where(payment_method_id: params[:method_id]) if params[:method_id].present?

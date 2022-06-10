@@ -16,6 +16,7 @@ RSpec.describe Api::Tokens, type: :request do
       arbiter_address
       p2p_address
       rate
+      decimals
     ]
   end
 
