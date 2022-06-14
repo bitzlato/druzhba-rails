@@ -14,7 +14,10 @@ module Api
       end
 
       get do
-        collection = Deal.includes(offer: [:user, :currency, :balance, :payment_method, { token: [rate: :currency] }])
+        collection = Deal.includes(
+          :seller, :buyer,
+          offer: [:user, :currency, :balance, :payment_method, { token: [rate: :currency] }]
+        )
         collection = collection.where(seller_id: params[:seller_id]) if params[:seller_id].present?
         collection = collection.where(buyer_id: params[:buyer_id]) if params[:buyer_id].present?
         collection = collection.where(state: params[:states]) if params[:states].present?

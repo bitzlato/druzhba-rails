@@ -62,6 +62,10 @@ module Api
       expose :address, documentation: { type: String, desc: 'User address' } do |offer|
         offer.user.eth_address
       end
+
+      expose :created_at, documentation: { type: Integer, desc: 'Offer created_at time in timestamp' } do |offer|
+        offer.created_at.to_i
+      end
       expose :payment_method, using: Api::Entities::PaymentMethod, as: :method
       expose :currency, using: Api::Entities::Currency
       expose :token, using: Api::Entities::Token

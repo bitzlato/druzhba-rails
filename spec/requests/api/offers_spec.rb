@@ -20,6 +20,7 @@ RSpec.describe Api::Offers, type: :request do
       active
       address
       balance
+      created_at
     ]
   end
 
