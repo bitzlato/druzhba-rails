@@ -26,6 +26,15 @@ RSpec.describe Api::Deals, type: :request do
       expect(json_response.first.keys).to match_array(response_fields)
       expect(response.status).to eq 200
     end
+
+    context 'when filter by state and seller' do
+      it 'return filtered collection' do
+        get '/api/deals', params: { buyer_id: users(:adam).id, status: 0 }
+
+        expect(json_response.size).to eq 1
+        expect(json_response.first).to include('id' => deal.id)
+      end
+    end
   end
 
   describe 'POST /api/deals' do
