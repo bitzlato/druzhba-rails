@@ -7,12 +7,14 @@ module Api
 
       params do
         optional :seller_id, type: Integer, desc: 'Filter by seller_id'
-        optional :buyer_id, type: Integer, desc: 'Filter by by id'
-        optional :states, type: Array[String], desc: 'Filter by states'
+        optional :buyer_id, type: Integer, desc: 'Filter by buyer id'
+        optional :states, type: Array,
+                          desc: 'Filter by states for example (1,3)',
+                          coerce_with: ->(val) { val.split(',').map(&:to_i) }
       end
 
       get do
-        collection = Deal.includes(offer: [:currency, :balance, :payment_method, { token: [rate: :currency] }])
+        collection = Deal.includes(offer: [:user, :currency, :balance, :payment_method, { token: [rate: :currency] }])
         collection = collection.where(seller_id: params[:seller_id]) if params[:seller_id].present?
         collection = collection.where(buyer_id: params[:buyer_id]) if params[:buyer_id].present?
         collection = collection.where(state: params[:states]) if params[:states].present?
