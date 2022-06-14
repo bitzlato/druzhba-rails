@@ -9,8 +9,8 @@ RSpec.describe Api::Deals, type: :request do
   let(:response_fields) do
     %w[
       id
-      buyer_id
-      seller_id
+      buyer_address
+      seller_address
       offer
       state
       fee

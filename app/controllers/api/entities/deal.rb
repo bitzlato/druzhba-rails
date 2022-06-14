@@ -12,20 +12,6 @@ module Api
       )
 
       expose(
-        :seller_id,
-        documentation: {
-          type: Integer,
-          desc: 'Deal seller id'
-        }
-      )
-      expose(
-        :buyer_id,
-        documentation: {
-          type: Integer,
-          desc: 'Deal buyer id'
-        }
-      )
-      expose(
         :fee,
         documentation: {
           type: BigDecimal,
@@ -47,6 +33,14 @@ module Api
           desc: 'Deal in_use state'
         }
       )
+
+      expose :seller_address, documentation: { type: String, desc: 'Deal seller address' } do |deal|
+        deal.seller.eth_address
+      end
+
+      expose :buyer_address, documentation: { type: String, desc: 'Deal buyer address' } do |deal|
+        deal.buyer.eth_address
+      end
 
       expose :state, documentation: { type: String, desc: 'Deal current state' }, &:state_before_type_cast
 
