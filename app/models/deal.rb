@@ -20,7 +20,7 @@ class Deal < ApplicationRecord
     canceled_seller: 7,
     cleared_seller: 8,
     cleared_arbiter: 9
-  }
+  }, _default: :started
 
   def chat_members
     [seller, buyer, offer.arbiter].compact
