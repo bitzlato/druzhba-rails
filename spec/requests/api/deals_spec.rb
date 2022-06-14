@@ -16,6 +16,7 @@ RSpec.describe Api::Deals, type: :request do
       fee
       locked
       in_use
+      created_at
     ]
   end
 
@@ -76,9 +77,9 @@ RSpec.describe Api::Deals, type: :request do
 
   describe 'PUT /api/deals/:id' do
     it 'update deal state' do
-      expect { put "/api/deals/#{deal.id}", params: { state: 'prepared' } }.to change {
-                                                                                 deal.reload.state
-                                                                               }.to('prepared')
+      expect { put "/api/deals/#{deal.id}", params: { state: 'started' } }.to change {
+                                                                                deal.reload.state
+                                                                              }.to('started')
       expect(json_response.keys).to match_array(response_fields)
       expect(response.status).to eq 200
     end

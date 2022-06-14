@@ -42,19 +42,17 @@ module Api
       )
 
       expose(
-        :state,
-        documentation: {
-          type: String,
-          desc: 'Deal current state'
-        }
-      )
-
-      expose(
         :in_use,
         documentation: {
           desc: 'Deal in_use state'
         }
       )
+
+      expose :state, documentation: { type: String, desc: 'Deal current state' }, &:state_before_type_cast
+
+      expose :created_at, documentation: { type: Integer, desc: 'Deal created_at time in timestamp' } do |deal|
+        deal.created_at.to_i
+      end
 
       expose :offer, using: Api::Entities::Offer
     end

@@ -9,7 +9,18 @@ class Deal < ApplicationRecord
 
   validates :fee, :locked, numericality: true
 
-  enum state: { initial: 0, prepared: 1 }
+  enum state: {
+    initial: 0,
+    started: 1,
+    payment_complete: 2,
+    dispute: 3,
+    canceled_arbiter: 4,
+    canceled_timeout_arbiter: 5,
+    canceled_buyer: 6,
+    canceled_seller: 7,
+    cleared_seller: 8,
+    cleared_arbiter: 9
+  }
 
   def chat_members
     [seller, buyer, offer.arbiter].compact
