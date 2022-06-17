@@ -9,6 +9,7 @@ RSpec.describe Api::Deals, type: :request do
   let(:response_fields) do
     %w[
       id
+      internal_id
       buyer_address
       seller_address
       offer
@@ -17,6 +18,8 @@ RSpec.describe Api::Deals, type: :request do
       locked
       in_use
       created_at
+      deadline_at
+      signature
     ]
   end
 
@@ -33,43 +36,6 @@ RSpec.describe Api::Deals, type: :request do
 
         expect(json_response.size).to eq 1
         expect(json_response.first).to include('id' => deal.id)
-      end
-    end
-  end
-
-  describe 'POST /api/deals' do
-    let(:post_request) do
-      post '/api/deals', params: deals_params
-    end
-
-    let(:deals_params) do
-      {
-        seller_id: users(:adam).id,
-        buyer_id: users(:david).id,
-        offer_id: offers(:adam_usdt_offer).id,
-        fee: 0.05,
-        locked: 10,
-        in_use: true
-      }
-    end
-
-    context 'with valid attributes' do
-      it 'create new deal' do
-        expect { post_request }.to change(Deal, :count).by(1)
-        expect(json_response.keys).to match_array(response_fields)
-        expect(response.status).to eq 201
-      end
-    end
-
-    context 'with invalid attributes' do
-      before do
-        deals_params[:fee] = ''
-      end
-
-      it 'render error message' do
-        expect { post_request }.not_to change(Deal, :count)
-        expect(json_response['error']).to eq 'Fee is not a number'
-        expect(response.status).to eq 422
       end
     end
   end

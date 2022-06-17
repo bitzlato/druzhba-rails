@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_09_104300) do
+ActiveRecord::Schema.define(version: 2022_06_17_091835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,9 @@ ActiveRecord::Schema.define(version: 2022_06_09_104300) do
     t.boolean "in_use", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deadline_at", null: false
+    t.integer "internal_id", null: false
+    t.string "signature", null: false
     t.index ["buyer_id"], name: "index_deals_on_buyer_id"
     t.index ["offer_id"], name: "index_deals_on_offer_id"
     t.index ["seller_id"], name: "index_deals_on_seller_id"
@@ -126,6 +129,8 @@ ActiveRecord::Schema.define(version: 2022_06_09_104300) do
     t.string "logo", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "signer_address"
+    t.string "signer_private_key_hex_encrypted"
   end
 
   create_table "users", force: :cascade do |t|
