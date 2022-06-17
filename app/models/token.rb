@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class Token < ApplicationRecord
+  include Vault::EncryptedModel
+
+  vault_lazy_decrypt!
+  vault_attribute :signer_private_key_hex
+
   validates :name, :symbol, :address, :p2p_address, :arbiter_address, presence: true
   validates :chain_id, :decimals, numericality: true
 

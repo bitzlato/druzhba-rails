@@ -70,6 +70,23 @@ module Api
           error!({ error_message: offer.errors.full_messages.join(', ') }, 422)
         end
       end
+
+      desc 'Accept offer by buyer', success: Entities::Deal
+
+      params do
+        requires :fee, type: BigDecimal, desc: 'Deal fee'
+        requires :locked, type: BigDecimal, desc: 'Deal locked'
+      end
+
+      put '/:id/accept' do
+        accept_offer = AcceptOffer.new(Offer.find(params[:id]), params.merge(buyer: current_user))
+        accept_offer.call
+        if accept_offer.deal.valid?
+          present accept_offer.deal, with: Entities::Deal
+        else
+          error!({ error: accept_offer.deal.errors.full_messages.join(', ') }, 422)
+        end
+      end
     end
   end
 end

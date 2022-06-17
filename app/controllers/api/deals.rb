@@ -24,26 +24,6 @@ module Api
         present collection, with: Entities::Deal
       end
 
-      desc 'Create new deal', success: Entities::Deal
-
-      params do
-        requires :seller_id, type: Integer, desc: 'Deal seller_id'
-        requires :buyer_id, type: Integer, desc: 'Deal buyer_uid'
-        requires :offer_id, type: Integer, desc: 'Deal offer_id'
-        requires :fee, type: BigDecimal, desc: 'Deal fee'
-        requires :locked, type: BigDecimal, desc: 'Deal locked'
-        optional :in_use, type: Boolean, desc: 'Deal in_use boolen state'
-      end
-
-      post do
-        deal = Deal.new(params)
-        if deal.save
-          present deal, with: Entities::Deal
-        else
-          error!({ error: deal.errors.full_messages.join(', ') }, 422)
-        end
-      end
-
       desc 'Get deal info', success: Entities::Deal
       get '/:id' do
         deal = Deal.find(params[:id])

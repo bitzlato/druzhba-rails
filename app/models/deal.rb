@@ -7,10 +7,13 @@ class Deal < ApplicationRecord
 
   has_one :chat, dependent: :destroy
 
-  validates :fee, :locked, numericality: true
+  validates :fee, :locked, :internal_id, numericality: true
+  validates :signature, :deadline_at, presence: true
+
+  scope :active, -> { where('deadline_at > ?', Time.current).where(state: :draft) }
 
   enum state: {
-    initial: 0,
+    draft: 0,
     started: 1,
     payment_complete: 2,
     dispute: 3,
@@ -20,7 +23,7 @@ class Deal < ApplicationRecord
     canceled_seller: 7,
     cleared_seller: 8,
     cleared_arbiter: 9
-  }, _default: :started
+  }, _default: :draft
 
   def chat_members
     [seller, buyer, offer.arbiter].compact

@@ -6,6 +6,8 @@ ruby '2.7.5'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'carrierwave'
 gem 'dotenv-rails'
+gem 'env-tweaks'
+gem 'eth'
 gem 'grape'
 gem 'grape-entity'
 gem 'grape-swagger'
@@ -20,6 +22,7 @@ gem 'rails', '~> 6.1.6'
 gem 'redis'
 gem 'sass-rails', '>= 6'
 gem 'semver2', '~> 3.4'
+gem 'vault-rails', '~> 0.7.1'
 gem 'webpacker', '~> 5.0'
 
 group :development, :test do

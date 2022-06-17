@@ -6,7 +6,7 @@ RSpec.describe Api::Offers, type: :request do
   fixtures :currencies, :tokens, :rates, :users, :payment_methods, :balances, :offers
   let(:offer) { offers(:david_usdt_offer) }
 
-  let(:response_fields) do
+  let(:offer_fields) do
     %w[
       id
       user_id
@@ -30,7 +30,7 @@ RSpec.describe Api::Offers, type: :request do
 
     it 'return array of offers' do
       get_offers
-      expect(json_response.first.keys).to match_array(response_fields)
+      expect(json_response.first.keys).to match_array(offer_fields)
       expect(response.status).to eq 200
     end
 
@@ -77,7 +77,7 @@ RSpec.describe Api::Offers, type: :request do
     context 'with valid attributes' do
       it 'create new offer' do
         expect { post_request }.to change(Offer, :count).by(1)
-        expect(json_response.keys).to match_array(response_fields)
+        expect(json_response.keys).to match_array(offer_fields)
         expect(response.status).to eq 201
       end
     end
@@ -99,7 +99,7 @@ RSpec.describe Api::Offers, type: :request do
     it 'return offer full info' do
       get "/api/offers/#{offer.id}"
 
-      expect(json_response.keys).to match_array(response_fields)
+      expect(json_response.keys).to match_array(offer_fields)
       expect(json_response).to include('id' => offer.id)
       expect(response.status).to eq 200
     end
@@ -108,8 +108,42 @@ RSpec.describe Api::Offers, type: :request do
   describe 'PUT /api/offers/:id' do
     it 'update offer state' do
       expect { put "/api/offers/#{offer.id}", params: { active: false } }.to change { offer.reload.active }.to(false)
-      expect(json_response.keys).to match_array(response_fields)
+      expect(json_response.keys).to match_array(offer_fields)
       expect(response.status).to eq 200
+    end
+  end
+
+  describe 'PUT /api/offers/:id/accept' do
+    let(:offer) { offers(:adam_usdt_offer) }
+    let(:put_request) do
+      put "/api/offers/#{offer.id}/accept", params: accept_params, headers: jwt_header_for(users(:piter))
+    end
+
+    let(:accept_params) do
+      {
+        fee: 0.05,
+        locked: 10
+      }
+    end
+
+    context 'with valid attributes' do
+      it 'create new deal' do
+        expect { put_request }.to change(Deal, :count).by(1)
+        expect(json_response).to include('internal_id' => 1)
+        expect(response.status).to eq 200
+      end
+    end
+
+    context 'with invalid attributes' do
+      before do
+        accept_params[:fee] = ''
+      end
+
+      it 'render error message' do
+        expect { put_request }.not_to change(Deal, :count)
+        expect(json_response['error']).to eq 'Fee is not a number'
+        expect(response.status).to eq 422
+      end
     end
   end
 end

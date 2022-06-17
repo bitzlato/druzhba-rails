@@ -3,13 +3,8 @@
 module Api
   module Entities
     class Deal < Grape::Entity
-      expose(
-        :id,
-        documentation: {
-          type: Integer,
-          desc: 'Unique deal identifier in database.'
-        }
-      )
+      expose :id, documentation: { type: Integer, desc: 'Unique deal identifier in database.' }
+      expose :internal_id, documentation: { type: Integer, desc: 'Unique current deal id in contract' }
 
       expose(
         :fee,
@@ -47,6 +42,12 @@ module Api
       expose :created_at, documentation: { type: Integer, desc: 'Deal created_at time in timestamp' } do |deal|
         deal.created_at.to_i
       end
+
+      expose :deadline_at, documentation: { type: Integer, desc: 'Deal deadline_at time in timestamp' } do |deal|
+        deal.deadline_at.to_i
+      end
+
+      expose :signature, documentation: { type: String, desc: 'Deal signature' }
 
       expose :offer, using: Api::Entities::Offer
     end
