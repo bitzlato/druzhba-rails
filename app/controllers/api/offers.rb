@@ -30,11 +30,9 @@ module Api
       desc 'Create new offer', success: Entities::Offer
 
       params do
-        requires :user_id, type: Integer, desc: 'Offer user_id'
         requires :token_id, type: Integer, desc: 'Offer token_id'
         requires :currency_id, type: Integer, desc: 'Offer currency_id'
         requires :method_id, type: Integer, desc: 'Offer method id'
-        requires :balance_id, type: Integer, desc: 'Offer balance id'
         requires :active, type: Boolean, desc: 'Offer active state'
         requires :rate, type: Float, desc: 'Offer rate'
         requires :min, type: Float, desc: 'Min offer'
@@ -44,7 +42,7 @@ module Api
 
       post do
         params[:payment_method_id] = params.delete(:method_id)
-        offer = Offer.new(params)
+        offer = Offer.new(params.merge(user: current_user))
         if offer.save
           present offer, with: Entities::Offer
         else

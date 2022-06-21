@@ -56,17 +56,15 @@ RSpec.describe Api::Offers, type: :request do
 
   describe 'POST /api/offers' do
     let(:post_request) do
-      post '/api/offers', params: offer_params
+      post '/api/offers', params: offer_params, headers: jwt_header_for(users(:david))
     end
 
     let(:offer_params) do
       {
         active: true,
-        user_id: users(:david).id,
         token_id: tokens(:usdt).id,
         currency_id: currencies(:rub).id,
         method_id: payment_methods(:by_card).id,
-        balance_id: balances(:david_usdt_balance).id,
         rate: 0.9,
         min: 10,
         max: 20,
