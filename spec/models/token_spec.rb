@@ -17,6 +17,13 @@ RSpec.describe Token, type: :model do
       expect(usdt.errors).to have_key(:name)
     end
 
+    it 'fee presence' do
+      usdt.fee = nil
+
+      expect(usdt).not_to be_valid
+      expect(usdt.errors).to have_key(:fee)
+    end
+
     it 'symbol presence' do
       usdt.symbol = ''
 

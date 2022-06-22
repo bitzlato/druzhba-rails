@@ -6,7 +6,7 @@ class Token < ApplicationRecord
   vault_lazy_decrypt!
   vault_attribute :signer_private_key_hex
 
-  validates :name, :symbol, :address, :p2p_address, :arbiter_address, presence: true
+  validates :name, :symbol, :address, :p2p_address, :arbiter_address, :fee, presence: true
   validates :chain_id, :decimals, numericality: true
 
   # TO-DО change to has_many

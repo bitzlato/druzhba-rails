@@ -119,7 +119,6 @@ RSpec.describe Api::Offers, type: :request do
 
     let(:accept_params) do
       {
-        fee: 0.05,
         locked: 10
       }
     end
@@ -134,12 +133,12 @@ RSpec.describe Api::Offers, type: :request do
 
     context 'with invalid attributes' do
       before do
-        accept_params[:fee] = ''
+        accept_params[:locked] = ''
       end
 
       it 'render error message' do
         expect { put_request }.not_to change(Deal, :count)
-        expect(json_response['error']).to eq 'Fee is not a number'
+        expect(json_response['error']).to eq 'Locked is not a number'
         expect(response.status).to eq 422
       end
     end
