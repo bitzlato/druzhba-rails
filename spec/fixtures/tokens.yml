@@ -7,3 +7,4 @@ usdt:
   name: 'Tether USDT'
   symbol: 'USDT'
   logo: 'usdt.png'
+  fee: 0.1

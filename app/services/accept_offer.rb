@@ -9,7 +9,7 @@ class AcceptOffer
 
   def initialize(offer, deal_params)
     @offer = offer
-    @deal_params = deal_params.slice(:fee, :locked, :buyer)
+    @deal_params = deal_params.slice(:locked, :buyer)
   end
 
   def call
@@ -17,7 +17,8 @@ class AcceptOffer
       build_deal
       set_internal_id
       set_deadline
-      add_signature
+      set_fee
+      set_signature
       @deal.save
     end
   end
@@ -40,9 +41,13 @@ class AcceptOffer
     @deal.deadline_at = Time.current + DEADLINE_IN_MUNUTES.minutes
   end
 
-  def add_signature
+  def set_signature
     key = Eth::Key.new(priv: offer.token.signer_private_key_hex)
     deal.signature = key.personal_sign(contract)
+  end
+
+  def set_fee
+    @deal.fee = offer.token.fee
   end
 
   def contract

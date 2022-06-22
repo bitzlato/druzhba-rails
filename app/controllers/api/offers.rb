@@ -74,7 +74,6 @@ module Api
       desc 'Accept offer by buyer', success: Entities::Deal
 
       params do
-        requires :fee, type: BigDecimal, desc: 'Deal fee'
         requires :locked, type: BigDecimal, desc: 'Deal locked'
       end
 
