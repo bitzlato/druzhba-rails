@@ -67,6 +67,14 @@ module Api
         }
       )
 
+      expose(
+        :fee,
+        documentation: {
+          type: BigDecimal,
+          desc: 'Token fee'
+        }
+      )
+
       expose :rate, using: Api::Entities::Rate
     end
   end

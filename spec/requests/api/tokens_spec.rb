@@ -17,6 +17,7 @@ RSpec.describe Api::Tokens, type: :request do
       p2p_address
       rate
       decimals
+      fee
     ]
   end
 
