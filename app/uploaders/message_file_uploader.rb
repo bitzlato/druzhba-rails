@@ -8,7 +8,7 @@ class MessageFileUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    Digest::SHA2.hexdigest("#{Time.now.utc}--#{model.id}").first(20) if original_filename
+    model[:file] || Digest::SHA2.hexdigest("#{Time.now.utc}--#{model.id}").first(20) if original_filename
   end
 
   def size_range
