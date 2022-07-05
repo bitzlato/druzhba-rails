@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::Tokens, type: :request do
-  fixtures :currencies, :tokens, :rates
+  fixtures :chains, :currencies, :tokens, :rates
   let(:token) { tokens(:usdt) }
 
   let(:response_fields) do

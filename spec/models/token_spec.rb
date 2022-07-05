@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Token, type: :model do
-  fixtures :tokens, :users
+  fixtures :chains, :tokens, :users
 
   let(:usdt) { tokens(:usdt) }
 
@@ -52,11 +52,11 @@ RSpec.describe Token, type: :model do
       expect(usdt.errors).to have_key(:arbiter_address)
     end
 
-    it 'chain_id numerical' do
+    it 'chain presence' do
       usdt.chain_id = 'x'
 
       expect(usdt).not_to be_valid
-      expect(usdt.errors).to have_key(:chain_id)
+      expect(usdt.errors).to have_key(:chain)
     end
 
     it 'decimals numerical' do

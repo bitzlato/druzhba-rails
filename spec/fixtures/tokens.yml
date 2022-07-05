@@ -2,7 +2,7 @@ usdt:
   address: '0x5f5b50911268d7ea6aedbaf37898b801e0de74cy'
   p2p_address: '0xt5w5b50911268d7ea6aedbaf37898b801e0de74cy'
   arbiter_address: '0x7e5b50911268d7ea6aedbaf37898b801e0de74cd'
-  chain_id: 1
+  chain: goerli
   decimals: 18
   name: 'Tether USDT'
   symbol: 'USDT'
