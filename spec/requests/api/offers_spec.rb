@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::Offers, type: :request do
-  fixtures :currencies, :tokens, :rates, :users, :payment_methods, :balances, :offers
+  fixtures :chains, :currencies, :tokens, :rates, :users, :payment_methods, :balances, :offers
   let(:offer) { offers(:david_usdt_offer) }
 
   let(:offer_fields) do

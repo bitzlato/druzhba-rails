@@ -23,7 +23,7 @@ set :deploy_to, -> { "/home/#{fetch(:user)}/#{fetch(:application)}" }
 
 set :disallow_pushing, true
 
-set :bugsnag_api_key, ENV.fetch('BUGSNAG_API_KEY')
+set :bugsnag_api_key, ENV.fetch('BUGSNAG_API_KEY', nil)
 
 default_branch = 'main'
 current_branch = `git rev-parse --abbrev-ref HEAD`.chomp
@@ -75,7 +75,7 @@ after 'deploy:publishing', 'systemd:puma:reload-or-restart'
 
 Rake::Task['deploy:assets:backup_manifest'].clear_actions
 
-if defined? Slackistrano
+if defined?(Slackistrano) && ENV.fetch('SLACKISTRANO_CHANNEL', nil)
   Rake::Task['deploy:starting'].prerequisites.delete('slack:deploy:starting')
   set :slackistrano,
       klass: Slackistrano::CustomMessaging,

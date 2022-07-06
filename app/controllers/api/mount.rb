@@ -16,6 +16,7 @@ module Api
 
     mount Currencies
     mount PaymentMethods
+    mount Chains
     mount Tokens
     mount Offers
     mount Deals
