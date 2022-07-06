@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class MessageFileUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
+  include CarrierWave::BombShelter
   storage :file
 
   def store_dir
@@ -18,4 +20,20 @@ class MessageFileUploader < CarrierWave::Uploader::Base
   def extension_allowlist
     %w[jpg jpeg png webp svg mp4 mov vmw avi webm]
   end
+
+  def optimize
+    manipulate! do |img|
+      return img unless img.mime_type.match %r{image/jpeg}
+
+      img.strip
+      img.combine_options do |c|
+        c.quality '80'
+        c.depth '8'
+        c.interlace 'plane'
+      end
+      img
+    end
+  end
+
+  process :optimize
 end
