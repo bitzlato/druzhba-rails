@@ -67,3 +67,4 @@ group :deploy do
   gem 'capistrano-tasks', github: 'brandymint/capistrano-tasks', require: false
   gem 'slackistrano', require: false
 end
+
