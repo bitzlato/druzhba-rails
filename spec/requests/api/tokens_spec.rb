@@ -9,6 +9,7 @@ RSpec.describe Api::Tokens, type: :request do
   let(:response_fields) do
     %w[
       id
+      chain_id
       name
       symbol
       logo
