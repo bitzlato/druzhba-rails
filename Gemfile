@@ -65,7 +65,7 @@ group :deploy do
   gem 'slackistrano', require: false
 end
 
-gem "ed25519", "~> 1.3"
-gem "bcrypt_pbkdf", "~> 1.1"
+gem 'ed25519', '~> 1.3'
+gem 'bcrypt_pbkdf', '~> 1.1'
 
-gem "sd_notify", "~> 0.1.1"
+gem 'sd_notify', '~> 0.1.1'
