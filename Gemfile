@@ -3,10 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.5'
 
+gem 'bcrypt_pbkdf', '~> 1.1'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'carrierwave'
 gem 'carrierwave-bombshelter'
 gem 'dotenv-rails'
+gem 'ed25519', '~> 1.3'
 gem 'env-tweaks'
 gem 'eth'
 gem 'grape'
@@ -23,6 +25,7 @@ gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.6'
 gem 'redis'
 gem 'sass-rails', '>= 6'
+gem 'sd_notify', '~> 0.1.1'
 gem 'semver2', '~> 3.4'
 gem 'vault-rails', '~> 0.7.1'
 gem 'webpacker', '~> 5.0'
@@ -64,8 +67,3 @@ group :deploy do
   gem 'capistrano-tasks', github: 'brandymint/capistrano-tasks', require: false
   gem 'slackistrano', require: false
 end
-
-gem 'ed25519', '~> 1.3'
-gem 'bcrypt_pbkdf', '~> 1.1'
-
-gem 'sd_notify', '~> 0.1.1'
