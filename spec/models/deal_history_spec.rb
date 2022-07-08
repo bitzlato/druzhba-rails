@@ -10,11 +10,11 @@ RSpec.describe DealHistory, type: :model do
   describe 'validation' do
     it { expect(deal_history).to be_valid }
 
-    it 'hash presence' do
-      deal_history.hash = ' '
+    it 'tx_hash presence' do
+      deal_history.tx_hash = ' '
 
       expect(deal_history).not_to be_valid
-      expect(deal_history.errors).to have_key(:hash)
+      expect(deal_history.errors).to have_key(:tx_hash)
     end
 
     it 'time presence' do

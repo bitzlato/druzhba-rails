@@ -15,6 +15,7 @@ RSpec.describe Api::Deals, type: :request do
       offer
       state
       fee
+      history
       locked
       in_use
       created_at

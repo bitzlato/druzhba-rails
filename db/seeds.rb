@@ -54,7 +54,11 @@ started_deal = Deal.create!({
                               id: 1, seller: seller, buyer: buyer, offer: offer_one, fee: 0, locked: 2,
                               state: 'started', in_use: true, deadline_at: 1.week.since, internal_id: 1, signature: '1'
                             })
-Deal.create!({ id: 2, seller: seller, buyer: buyer, offer: offer_two, fee: 0, locked: 4, state: 'draft', in_use: true, deadline_at: 1.week.since, internal_id: 1, signature: '80f8f5426f5369ffbf75dc9c4b5e377c2f7bb2787cced16900e463f02bd2203576a0e7404e3f45c618f4cbdda726e20ed367a6fcaf8be23ee4af6a377f6089021c' })
+deal = Deal.create!({
+                      id: 2, seller: seller, buyer: buyer, offer: offer_two, fee: 0, locked: 4, state: 'draft',
+                      in_use: true, deadline_at: 1.week.since, internal_id: 1,
+                      signature: '80f8f5426f5369ffbf75dc9c4b5e377c2f7bb2787cced16900e463f02bd2203576a0e7404e3f45c618f4cbdda726e20ed367a6fcaf8be23ee4af6a377f6089021c'
+                    })
 
 chat = Chat.create!({ deal: started_deal })
 

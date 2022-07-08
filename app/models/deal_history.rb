@@ -3,5 +3,7 @@
 class DealHistory < ApplicationRecord
   belongs_to :deal
 
-  validates :state, :hash, :time, presence: true
+  validates :state, :tx_hash, :block_number, :tx_index, :contract, :time, presence: true
+
+  scope :ordered, -> { order(:block_number).order(:tx_index) }
 end

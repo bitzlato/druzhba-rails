@@ -15,7 +15,7 @@ module Api
 
       get do
         collection = Deal.includes(
-          :seller, :buyer,
+          :seller, :buyer, :deal_histories,
           offer: [:user, :currency, :balance, :payment_method, { token: [rate: :currency] }]
         )
         collection = collection.where(seller_id: params[:seller_id]) if params[:seller_id].present?
