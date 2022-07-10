@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_07_050501) do
+ActiveRecord::Schema.define(version: 2022_07_08_111248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,10 +54,13 @@ ActiveRecord::Schema.define(version: 2022_07_07_050501) do
   create_table "deal_histories", force: :cascade do |t|
     t.bigint "deal_id", null: false
     t.integer "state", null: false
-    t.string "hash", null: false
+    t.string "tx_hash", null: false
     t.datetime "time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "block_number", null: false
+    t.bigint "tx_index", null: false
+    t.string "contract", null: false
     t.index ["deal_id"], name: "index_deal_histories_on_deal_id"
   end
 

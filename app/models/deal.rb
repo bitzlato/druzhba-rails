@@ -6,6 +6,7 @@ class Deal < ApplicationRecord
   belongs_to :offer
 
   has_one :chat, dependent: :destroy
+  has_many :deal_histories, dependent: :delete_all
 
   validates :fee, :locked, :internal_id, numericality: true
   validates :signature, :deadline_at, presence: true
