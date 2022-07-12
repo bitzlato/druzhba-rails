@@ -1,0 +1,18 @@
+.container
+  h1 Сделки
+
+  div.mb-2= t 'application.index.total_records', count: deals.count
+  table.table.table-striped.table-hover
+    thead.thead-dark
+      tr
+        th Токен
+        th Покупатель
+        th Продавец
+
+    tbody
+      - deals.each do |deal|
+        tr
+          td= deal.offer.token
+          td= deal.seller
+          td= deal.buyer
+  = paginate deals

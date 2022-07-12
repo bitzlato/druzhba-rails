@@ -1,0 +1,9 @@
+- if logged_in?
+  li.nav-item.dropdown
+    = link_to '#', class: 'my-lg-0 py-lg-0 nav-link dropdown-toggle', data: { toggle: 'dropdown' }, id: :navbarDropdown, role: :button, 'aria-haspopup' => true, 'aria-expanded' => false do
+      = gravatar_tag current_user.email,
+        size: 32
+      span.ml-2
+        span= current_user.email
+    .dropdown-menu.dropdown-menu-right[aria-labelledby="navbarDropdown"]
+      = link_to t('.exit'), sessions_url, method: :delete, class: 'dropdown-item'

@@ -1,0 +1,6 @@
+= simple_form_for user_session, url: sessions_path, wrapper: :signin_form do |f|
+  = f.input :email, autofocus: true, required: true
+  = f.input :password, required: true
+  .row
+    .col-md-6
+      = f.button :submit, class: 'btn-primary', data: { disable_with: t('helpers.disable_with') }

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  authenticates_with_sorcery!
   has_many :messages, foreign_key: :author_id, dependent: :destroy, inverse_of: :author
 
   validates :eth_address, presence: true
@@ -19,5 +20,9 @@ class User < ApplicationRecord
 
   def arbiter_of?(deal)
     deal.offer.arbiter == self
+  end
+
+  def to_s
+    eth_address
   end
 end
