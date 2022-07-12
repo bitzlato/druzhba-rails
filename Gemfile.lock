@@ -61,6 +61,9 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_link_to (1.0.5)
+      actionpack
+      addressable
     activejob (6.1.6)
       activesupport (= 6.1.6)
       globalid (>= 0.3.6)
@@ -90,6 +93,11 @@ GEM
     aws-eventstream (1.2.0)
     aws-sigv4 (1.4.0)
       aws-eventstream (~> 1, >= 1.0.2)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
+    bcrypt (3.1.16)
     bcrypt_pbkdf (1.1.0)
     bootsnap (1.11.1)
       msgpack (~> 1.2)
@@ -137,8 +145,12 @@ GEM
       carrierwave
       fastimage
     coderay (1.1.3)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.5.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
@@ -172,6 +184,10 @@ GEM
       openssl (~> 2.2)
       rbsecp256k1 (~> 5.1)
       scrypt (~> 3.0)
+    faraday (2.2.0)
+      faraday-net_http (~> 2.0)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (2.0.1)
     fastimage (2.2.6)
     ffi (1.15.5)
     ffi-compiler (1.0.1)
@@ -196,8 +212,10 @@ GEM
       grape-swagger (>= 1.2.0)
     grape-swagger-rails (0.3.1)
       railties (>= 3.2.12)
+    gravatarify (3.1.1)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
+    ice_nine (0.11.2)
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
@@ -236,6 +254,7 @@ GEM
     minitest (5.15.0)
     msgpack (1.5.2)
     multi_json (1.15.0)
+    multi_xml (0.6.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     mustermann-grape (1.0.1)
@@ -249,6 +268,13 @@ GEM
       racc (~> 1.4)
     nokogiri (1.13.6-x86_64-linux)
       racc (~> 1.4)
+    oauth (0.5.8)
+    oauth2 (1.4.9)
+      faraday (>= 0.17.3, < 3.0)
+      jwt (>= 1.0, < 3.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
     openssl (2.2.1)
       ipaddr
     parallel (1.22.1)
@@ -369,8 +395,22 @@ GEM
     sd_notify (0.1.1)
     semantic_range (3.0.0)
     semver2 (3.4.2)
+    simple_form (5.1.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     slackistrano (4.0.1)
       capistrano (>= 3.8.1)
+    slim (4.1.0)
+      temple (>= 0.7.6, < 0.9)
+      tilt (>= 2.0.6, < 2.1)
+    slim-rails (3.3.0)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      slim (>= 3.0, < 5.0)
+    sorcery (0.16.3)
+      bcrypt (~> 3.1)
+      oauth (~> 0.5, >= 0.5.5)
+      oauth2 (~> 1.0, >= 0.8.0)
     spring (4.0.0)
     sprockets (4.0.3)
       concurrent-ruby (~> 1.0)
@@ -385,7 +425,9 @@ GEM
     sshkit-interactive (0.3.0)
       sshkit (~> 1.12)
     ssrf_filter (1.0.7)
+    temple (0.8.2)
     thor (1.2.1)
+    thread_safe (0.3.6)
     tilt (2.0.10)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -395,6 +437,10 @@ GEM
     vault-rails (0.7.1)
       activesupport (>= 5.0)
       vault (~> 0.14)
+    virtus (2.0.0)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
     webpacker (5.4.3)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
@@ -410,6 +456,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_link_to
   bcrypt_pbkdf (~> 1.1)
   bootsnap (>= 1.4.4)
   brakeman
@@ -439,6 +486,7 @@ DEPENDENCIES
   grape-swagger
   grape-swagger-entity
   grape-swagger-rails
+  gravatarify (~> 3.1)
   jbuilder (~> 2.7)
   jwt
   kaminari
@@ -459,14 +507,18 @@ DEPENDENCIES
   sass-rails (>= 6)
   sd_notify (~> 0.1.1)
   semver2 (~> 3.4)
+  simple_form
   slackistrano
+  slim-rails
+  sorcery
   spring
   tzinfo-data
   vault-rails (~> 0.7.1)
+  virtus
   webpacker (~> 5.0)
 
 RUBY VERSION
    ruby 2.7.5p203
 
 BUNDLED WITH
-   2.3.17
+   2.3.11

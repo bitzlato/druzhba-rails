@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.5'
 
+gem 'active_link_to'
 gem 'bcrypt_pbkdf', '~> 1.1'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'carrierwave'
@@ -16,6 +17,7 @@ gem 'grape-entity'
 gem 'grape-swagger'
 gem 'grape-swagger-entity'
 gem 'grape-swagger-rails'
+gem 'gravatarify', '~> 3.1'
 gem 'jbuilder', '~> 2.7'
 gem 'jwt'
 gem 'kaminari'
@@ -27,7 +29,11 @@ gem 'redis'
 gem 'sass-rails', '>= 6'
 gem 'sd_notify', '~> 0.1.1'
 gem 'semver2', '~> 3.4'
+gem 'simple_form'
+gem 'slim-rails'
+gem 'sorcery'
 gem 'vault-rails', '~> 0.7.1'
+gem 'virtus'
 gem 'webpacker', '~> 5.0'
 
 group :development, :test do

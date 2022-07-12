@@ -17,4 +17,8 @@ class Token < ApplicationRecord
   def arbiter
     @arbiter ||= User.find_by(eth_address: arbiter_address)
   end
+
+  def to_s
+    name
+  end
 end

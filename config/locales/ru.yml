@@ -1,0 +1,32 @@
+ru:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      date_picker:  "%d.%m.%Y"
+      date_picker_js: 'DD.MM.YYYY'
+
+  time:
+    am: утра
+    formats:
+      default: "%a, %d %b %Y, %H:%M:%S %z"
+      long: "%d %B %Y, %H:%M"
+      short: "%d %b, %H:%M"
+      date_picker_js: 'DD.MM.YYYY hh:mm:ss'
+      date_picker: "%a, %d %b %Y, %H:%M:%S %z"
+    pm: вечера
+  are_you_sure?: Уверен?
+  titles:
+    application: Агнесса
+  application:
+    user_dropdown:
+      settings: 'Профиль пользователя'
+      exit: 'Выход'
+      signin: 'Войти'
+    index:
+      total_records: 'Всего записей: %{count}'
+    summary:
+      title: 'Сводка'
+
+  shared:
+    navbar:
+      deals: 'Сделки'
