@@ -1,0 +1,40 @@
+.container
+  h1 Блокчейны
+  div
+    div.mb-2.float-left= t 'application.index.total_records', count: tokens.count
+    div.float-right =link_to 'Новый Блокчейн', new_admin_token_path, class: 'btn btn-sm btn-secondary'
+  table.table.table-striped.table-hover
+    thead.thead-dark
+      tr
+        th= Token.human_attribute_name :chain
+        th= Token.human_attribute_name :name
+        th= Token.human_attribute_name :symbol
+        th= Token.human_attribute_name :logo
+        th= Token.human_attribute_name :address
+        th= Token.human_attribute_name :decimals
+        th= Token.human_attribute_name :p2p_address
+        th= Token.human_attribute_name :arbiter_address
+        th= Token.human_attribute_name :signer_address
+        th= Token.human_attribute_name :signer_private_key_hex_encrypted
+        th= Token.human_attribute_name :fee
+        th
+    tbody
+      - tokens.each do |token|
+        tr
+          td= token.chain
+          td= token.name
+          td= token.symbol
+          td= token.logo
+          td= token.address
+          td= token.decimals
+          td= token.p2p_address
+          td= token.arbiter_address
+          td= token.signer_address
+          td= token.signer_private_key_hex_encrypted.present?
+          td= token.fee
+
+          td
+            = link_to t('buttons.edit'), edit_admin_token_path(token), class: 'btn btn-sm btn-secondary'
+            br
+            = link_to t('buttons.destroy'), admin_token_path(token), class: 'btn btn-sm btn-secondary', method: :delete, 'data-confirm': t('are_you_sure')
+  = paginate tokens

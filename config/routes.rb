@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :admin, module: :admin do
     root to: 'deals#index'
     resources :chains, except: [:show]
+    resources :tokens, except: [:show]
     resources :deals, only: [:index]
   end
 

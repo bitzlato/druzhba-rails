@@ -1,0 +1,14 @@
+= simple_form_for [:admin, token] do |f|
+  = f.input :name
+  = f.input :symbol
+  = f.input :logo
+  = f.input :address
+  = f.input :chain
+  = f.input :decimals
+  = f.input :p2p_address
+  = f.input :arbiter_address
+  / = f.input :signer_address
+  / = f.input :signer_private_key_hex_encrypted
+  = f.input :fee
+
+  = f.button :submit,  class: 'btn btn-success'

@@ -11,3 +11,15 @@ ru:
         explorer_token: Exporer токена
         explorer_tx: Exporer транзакции
         metamask_rpc: Metamask rpc
+      token:
+        chain_id: Блокчейн
+        chain: Блокчейн
+        name: Название
+        symbol: Символ
+        logo: Лого
+        address: Адрес
+        p2p_address: P2P адрес
+        arbiter_address: Арбитер
+        signer_address: Подпись
+        signer_private_key_hex_encrypted: Ключ подписи
+        fee: Комиссия
