@@ -31,6 +31,7 @@ ru:
     navbar:
       chains: 'Блокчейны'
       deals: 'Сделки'
+      tokens: 'Токены'
 
   are_you_sure: Вы уверены?
 
@@ -40,7 +41,6 @@ ru:
     destroyed: Успешно удалено
   flashes:
     destroyed: Ошибка удаления
-
   buttons:
     edit: Редактировать
     destroy: Удалить
