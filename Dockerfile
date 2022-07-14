@@ -1,6 +1,6 @@
 FROM ruby:2.7.5-alpine
 
-ENV APP_HOME=/app \
+ENV APP_HOME=/druzhba_rails \
     TZ=UTC
 
 COPY Gemfile Gemfile.lock $APP_HOME/

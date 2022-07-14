@@ -1,0 +1,22 @@
+version: "3.3"
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+  backend:
+    build: .
+    volumes:
+      - .:/druzhba_rails
+    ports:
+      - "9771:3000"
+    depends_on:
+      - db
+    environment:
+      DRUZHBA_DATABASE_HOST: db
+      DRUZHBA_DATABASE_USERNAME: postgres
+      DRUZHBA_DATABASE_PASSWORD: password
