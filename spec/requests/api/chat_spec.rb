@@ -95,7 +95,7 @@ RSpec.describe 'Chat api', type: :request do
         it 'render error message' do
           expect { post_message }.not_to change(Message, :count)
           expect(response.status).to eq 422
-          expect(json_response['error_message']).to match(/Message can't be blank/)
+          expect(json_response['error_message']).not_to be_empty
         end
       end
 
@@ -146,7 +146,7 @@ RSpec.describe 'Chat api', type: :request do
           it 'render error message' do
             expect { post_message_file }.not_to change(Message, :count)
             expect(response.status).to eq 422
-            expect(json_response['error_message']).to match(/File title can't be blank/)
+            expect(json_response['error_message']).not_to be_empty
           end
         end
 

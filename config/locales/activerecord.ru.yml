@@ -1,0 +1,13 @@
+ru:
+  activerecord:
+    models:
+      chain:
+        one: Блокчейн
+        many: Блокчейны
+    attributes:
+      chain:
+        name: Название
+        explorer_address: Exporer адреса
+        explorer_token: Exporer токена
+        explorer_tx: Exporer транзакции
+        metamask_rpc: Metamask rpc
