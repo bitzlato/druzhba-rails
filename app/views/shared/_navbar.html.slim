@@ -6,6 +6,8 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.flex-column.flex-md-row.sticky
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav.mr-auto
         li.nav-item.mr-2.d-flex.align-items-center
+          = active_link_to t('.chains'), admin_chains_path, class: 'my-lg-0 py-lg-0 nav-link'
+        li.nav-item.mr-2.d-flex.align-items-center
           = active_link_to t('.deals'), admin_deals_path, class: 'my-lg-0 py-lg-0 nav-link'
         / li.nav-item.search-navbar
         /   = content_for(:navbar_search)

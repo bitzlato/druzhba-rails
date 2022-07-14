@@ -29,4 +29,18 @@ ru:
 
   shared:
     navbar:
+      chains: 'Блокчейны'
       deals: 'Сделки'
+
+  are_you_sure: Вы уверены?
+
+  notices:
+    created: Успешно создано
+    updated: Успешно обновлено
+    destroyed: Успешно удалено
+  flashes:
+    destroyed: Ошибка удаления
+
+  buttons:
+    edit: Редактировать
+    destroy: Удалить

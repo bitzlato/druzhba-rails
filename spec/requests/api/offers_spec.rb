@@ -87,7 +87,7 @@ RSpec.describe Api::Offers, type: :request do
 
       it 'render error message' do
         expect { post_request }.not_to change(Offer, :count)
-        expect(json_response['error']).to eq 'Payment method must exist'
+        expect(json_response['error']).not_to be_empty
         expect(response.status).to eq 422
       end
     end
@@ -138,7 +138,7 @@ RSpec.describe Api::Offers, type: :request do
 
       it 'render error message' do
         expect { put_request }.not_to change(Deal, :count)
-        expect(json_response['error']).to eq 'Locked is not a number'
+        expect(json_response['error']).not_to be_empty
         expect(response.status).to eq 422
       end
     end
