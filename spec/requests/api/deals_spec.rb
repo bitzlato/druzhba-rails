@@ -17,7 +17,6 @@ RSpec.describe Api::Deals, type: :request do
       fee
       history
       locked
-      in_use
       created_at
       deadline_at
       signature

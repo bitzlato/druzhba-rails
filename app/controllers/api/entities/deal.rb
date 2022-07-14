@@ -7,7 +7,6 @@ module Api
       expose :internal_id, documentation: { type: Integer, desc: 'Unique current deal id in contract' }
       expose :fee, documentation: { type: BigDecimal, desc: 'Deal fee' }
       expose :locked, documentation: { type: BigDecimal, desc: 'Deal locked sum' }
-      expose :in_use, documentation: { desc: 'Deal in_use state' }
       expose :seller_address, documentation: { type: String, desc: 'Deal seller address' } do |deal|
         deal.seller.eth_address
       end
