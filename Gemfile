@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.5'
 
+gem 'bunny'
 gem 'active_link_to'
 gem 'bcrypt_pbkdf', '~> 1.1'
 gem 'bootsnap', '>= 1.4.4', require: false

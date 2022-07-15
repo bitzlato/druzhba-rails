@@ -70,7 +70,7 @@ set :assets_roles, []
 
 set :init_system, :systemd
 set :systemd_amqp_daemon_role, :app
-set :systemd_amqp_daemon_instances, -> { %i[amqp] }
+set :systemd_amqp_daemon_instances, -> { %i[blockchain_events] }
 
 after 'deploy:publishing', 'systemd:puma:reload-or-restart'
 
