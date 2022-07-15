@@ -10,5 +10,5 @@ set :puma_bind, -> { ["tcp://0.0.0.0:977#{fetch(:stage)[1].to_i || 9}", "unix://
 server ENV.fetch('STAGING_SERVER'),
        user: fetch(:user),
        port: '22',
-       roles: %w[app db daemons].freeze,
+       roles: %w[app db bugsnag webpack].freeze,
        ssh_options: { forward_agent: true }
