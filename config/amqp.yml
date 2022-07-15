@@ -1,0 +1,50 @@
+connect:
+  host: <%= ENV.fetch('RABBITMQ_HOST', 'localhost') %>
+  port: <%= ENV.fetch('RABBITMQ_PORT', '5672') %>
+  username: <%= ENV.fetch('RABBITMQ_USER', 'guest') %>
+  password: <%= ENV.fetch('RABBITMQ_PASSWORD', 'guest') %>
+
+exchange:
+  meduza:
+    name: meduza
+    type: direct
+
+binding:
+  address_pender:
+    exchange: meduza
+    queue: meduza.check_address
+    durable: true
+    type: direct
+    routing_key: check_address
+
+  legacy_withdrawal_rpc_callback:
+    exchange: meduza
+    queue: meduza.legacy_withdrawal_rpc_callback
+    durable: true
+    type: direct
+    routing_key: legacy_withdrawal_rpc_callback
+
+  withdrawal_rpc_callback:
+    exchange: meduza
+    queue: meduza.withdrawal_rpc_callback
+    durable: true
+    type: direct
+    routing_key: withdrawal_rpc_callback
+
+  transaction_pender:
+    exchange: meduza
+    queue: meduza.check_transaction
+    durable: true
+    type: direct
+    routing_key: check_transaction
+
+  legacy_rpc_callback:
+    exchange: meduza
+    queue: meduza.legacy_rpc_callback
+    durable: true
+    type: direct
+    routing_key: legacy_rpc_callback
+
+channel:
+  meduza:
+    prefetch: 10
