@@ -103,6 +103,8 @@ GEM
     bootsnap (1.11.1)
       msgpack (~> 1.2)
     brakeman (5.2.2)
+    bugsnag (6.24.2)
+      concurrent-ruby (~> 1.0)
     bugsnag-capistrano (2.1.0)
     builder (3.2.4)
     bundler-audit (0.9.0.1)
@@ -217,6 +219,7 @@ GEM
     grape-swagger-rails (0.3.1)
       railties (>= 3.2.12)
     gravatarify (3.1.1)
+    hashie (5.0.0)
     i18n (1.11.0)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -469,6 +472,7 @@ DEPENDENCIES
   bcrypt_pbkdf (~> 1.1)
   bootsnap (>= 1.4.4)
   brakeman
+  bugsnag
   bugsnag-capistrano
   bundler-audit
   bunny
@@ -497,6 +501,7 @@ DEPENDENCIES
   grape-swagger-entity
   grape-swagger-rails
   gravatarify (~> 3.1)
+  hashie
   jbuilder (~> 2.7)
   jwt
   kaminari
@@ -531,4 +536,4 @@ RUBY VERSION
    ruby 2.7.5p203
 
 BUNDLED WITH
-   2.3.5
+   2.3.11

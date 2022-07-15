@@ -2,7 +2,9 @@
 
 require File.join(ENV.fetch('RAILS_ROOT'), 'config', 'environment')
 
+# rubocop:disable Metrics/BlockLength
 # rubocop:disable Rails/Output
+# rubocop:disable Rails/Exit
 
 raise 'bindings must be provided.' if ARGV.size.zero?
 
@@ -18,8 +20,9 @@ ch = conn.create_channel
 channel_id = ARGV.first.split(':').first
 prefetch = AMQP::Config.channel(channel_id)[:prefetch] || 0
 ch.prefetch(prefetch) if prefetch.positive?
-logger.info { "Connected to AMQP broker (channel_id: #{channel_id || :nil}, prefetch: #{prefetch.positive? ? prefetch : 'default'})" }
-
+logger.info do
+  "Connected to AMQP broker (channel_id: #{channel_id || :nil}, prefetch: #{prefetch.positive? ? prefetch : 'default'})"
+end
 
 # Setup signal trapping
 #
@@ -38,7 +41,7 @@ workers = ARGV.map do |binding_id|
   logger.info "Bind as '#{binding_id}' with args #{binding}"
 
   worker = ::AMQP.const_get(binding_id.to_s.camelize).new
-  queue  = ch.queue(binding.fetch(:queue), durable: binding.dig(:durable))
+  queue  = ch.queue(binding.fetch(:queue), durable: binding[:durable])
 
   if defined? Bugsnag
     Bugsnag.configure do |config|
@@ -48,31 +51,32 @@ workers = ARGV.map do |binding_id|
     end
   end
 
-  exchange = ch.send(* AMQP::Config.exchange( binding.fetch(:exchange) ) )
+  exchange = ch.send(* AMQP::Config.exchange(binding.fetch(:exchange)))
 
-  case binding.dig(:type).to_s
+  case binding[:type].to_s
   when 'direct'
     routing_key = binding.fetch(:routing_key)
     logger.info("Type 'direct' routing_key = #{routing_key}")
     queue.bind exchange, routing_key: routing_key
   when 'topic'
-    binding.dig(:topics).each do |topic|
+    binding[:topics].each do |topic|
       logger.info("Type 'topic' routing_key (topic) = #{topic}")
       queue.bind exchange, routing_key: topic
     end
-  when 'headers'
+  when 'fanout'
     queue.bind exchange
   else
     raise 'unknown type'
   end
 
-  queue.purge if binding.dig(:clean_start)
+  queue.purge if binding[:clean_start]
 
   # Enable manual acknowledge mode by setting manual_ack: true.
   queue.subscribe manual_ack: true do |delivery_info, metadata, payload|
     logger.info { "Received: #{payload}" }
     callback = proc do |event|
-      event.add_metadata(:amqp, { message_payload: payload, message_metadata: metadata, message_delivery_info: delivery_info })
+      params = { message_payload: payload, message_metadata: metadata, message_delivery_info: delivery_info }
+      event.add_metadata(:amqp, params)
     end
     Bugsnag.add_on_error(callback)
 
@@ -95,7 +99,9 @@ workers = ARGV.map do |binding_id|
       exit(1)
     end
 
-    report_exception(e, true, { message_payload: payload, message_metadata: metadata, message_delivery_info: delivery_info })
+    params = { message_payload: payload, message_metadata: metadata, message_delivery_info: delivery_info }
+
+    report_exception(e, true, params)
   ensure
     Bugsnag.remove_on_error(callback)
   end
@@ -113,4 +119,6 @@ end
 
 ch.work_pool.join
 
+# rubocop:enable Rails/Exit
 # rubocop:enable Rails/Output
+# rubocop:enable Metrics/BlockLength

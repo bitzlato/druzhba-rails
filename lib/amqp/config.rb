@@ -1,13 +1,12 @@
-# encoding: UTF-8
 # frozen_string_literal: true
 
 module AMQP
   class Config
-    class <<self
+    class << self
       def data
         @data ||= Hashie::Mash.new(
           YAML.safe_load(
-            ERB.new(File.read(Rails.root.join('config', 'amqp.yml'))).result
+            ERB.new(File.read(Rails.root.join('config/amqp.yml'))).result
           )
         )
       end
@@ -17,9 +16,9 @@ module AMQP
       end
 
       def binding(id)
-        data.
-          fetch(:binding).
-          fetch(id) || raise("No binding for #{id}")
+        data
+          .fetch(:binding)
+          .fetch(id) || raise("No binding for #{id}")
       end
 
       def channel(id)
@@ -29,7 +28,7 @@ module AMQP
       def queue(id)
         queue_settings = data.fetch(:queue).fetch(id)
         name = queue_settings.fetch(:name)
-        settings = { durable: queue_settings.dig(:durable) }
+        settings = { durable: queue_settings[:durable] }
         [name, settings]
       end
 

@@ -33,4 +33,9 @@ class Deal < ApplicationRecord
   def self.chat_identifier_for(deal_id, user)
     "deal_#{deal_id}_chat_for_#{user.uid}"
   end
+
+  def update_state_from_history!
+    deal_history = deal_histories.order(:block_number).order(:tx_index).last
+    update!({ state: deal_history.state })
+  end
 end

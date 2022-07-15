@@ -1,8 +1,7 @@
-david_and_adam_deal_confirmed:
+david_and_adam_deal_history_confirmed:
   deal: david_and_adam_deal
   state: 1
   block_number: 1
   tx_index: 2
   tx_hash: '0x2e94d77f5ee001f68a96705aebdea519caf8e50d7f9a9bff520ac526ea96d460'
-  contract: '0x5f5b50911268d7ea6aedbaf37898b801e0de74cy'
-  time: 'Apr-26-2022 12:00:00'
+  payload: {hash: '0x2e94d77f5ee001f68a96705aebdea519caf8e50d7f9a9bff520ac526ea96d460'}

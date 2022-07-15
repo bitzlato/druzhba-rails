@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AMQP
-  class Base # rubocop:disable Lint/EmptyClass
+  class Base
     attr_reader :logger
 
     def initialize

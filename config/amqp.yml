@@ -1,16 +1,16 @@
-connect: amqp://guest:guest@localhost:5672
+connect: <%= ENV.fetch('DRUZHBA_RABBITMQ_URL', 'amqp://guest:guest@localhost:5672') %>
 
 exchange:
   druzhba:
     name: default
-    type: direct
+    type: fanout
 
 binding:
   blockchain_events:
     exchange: druzhba
     queue: druzhba-events
     durable: true
-    type: direct
+    type: fanout
 
 channel:
   druzhba:

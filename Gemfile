@@ -3,10 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.5'
 
-gem 'bunny'
 gem 'active_link_to'
 gem 'bcrypt_pbkdf', '~> 1.1'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'bugsnag'
+gem 'bunny'
 gem 'carrierwave'
 gem 'carrierwave-bombshelter'
 gem 'dotenv-rails'
@@ -19,6 +20,7 @@ gem 'grape-swagger'
 gem 'grape-swagger-entity'
 gem 'grape-swagger-rails'
 gem 'gravatarify', '~> 3.1'
+gem 'hashie'
 gem 'jbuilder', '~> 2.7'
 gem 'jwt'
 gem 'kaminari'
