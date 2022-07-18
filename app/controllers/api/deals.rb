@@ -30,19 +30,6 @@ module Api
         present deal, with: Entities::Deal
       end
 
-      desc 'Update deal status', success: Entities::Deal
-      params do
-        requires :state, type: String, desc: 'New state'
-      end
-      put '/:id' do
-        deal = Deal.find(params[:id])
-        if deal.update(state: params[:state])
-          present deal, with: Entities::Deal
-        else
-          error!({ error_message: deal.errors.full_messages.join(', ') }, 422)
-        end
-      end
-
       mount Chat
     end
   end

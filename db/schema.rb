@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_14_064600) do
+ActiveRecord::Schema.define(version: 2022_07_16_101935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,12 +64,11 @@ ActiveRecord::Schema.define(version: 2022_07_14_064600) do
     t.bigint "deal_id", null: false
     t.integer "state", null: false
     t.string "tx_hash", null: false
-    t.datetime "time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "block_number", null: false
     t.bigint "tx_index", null: false
-    t.string "contract", null: false
+    t.jsonb "payload", default: {}, null: false
     t.index ["deal_id"], name: "index_deal_histories_on_deal_id"
   end
 

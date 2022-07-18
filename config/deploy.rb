@@ -69,7 +69,8 @@ set :puma_start_task, 'systemd:puma:start'
 set :assets_roles, []
 
 set :init_system, :systemd
-set :systemd_daemon_role, :daemons
+set :systemd_amqp_daemon_role, :app
+set :systemd_amqp_daemon_instances, -> { [:blockchain_events] }
 
 after 'deploy:publishing', 'systemd:puma:reload-or-restart'
 

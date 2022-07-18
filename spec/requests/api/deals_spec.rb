@@ -49,14 +49,4 @@ RSpec.describe Api::Deals, type: :request do
       expect(response.status).to eq 200
     end
   end
-
-  describe 'PUT /api/deals/:id' do
-    it 'update deal state' do
-      expect { put "/api/deals/#{deal.id}", params: { state: 'started' } }.to change {
-                                                                                deal.reload.state
-                                                                              }.to('started')
-      expect(json_response.keys).to match_array(response_fields)
-      expect(response.status).to eq 200
-    end
-  end
 end
