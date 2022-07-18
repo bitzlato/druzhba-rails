@@ -22,6 +22,7 @@ RUN set -x \
     && apk add --no-cache \
             postgresql14-dev \
             tzdata \
+            imagemagick \
     && gem update bundler \
     && bundle install --jobs=$(nproc) --system --binstubs=/usr/local/bin \
     && chown -R app:app $APP_HOME \
