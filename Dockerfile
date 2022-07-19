@@ -23,16 +23,22 @@ RUN set -x \
             postgresql14-dev \
             tzdata \
             imagemagick \
+            nodejs \
+            yarn \
     && gem update bundler \
+    && yarn \
     && bundle install --jobs=$(nproc) --system --binstubs=/usr/local/bin \
+    && RAILS_ENV=production bundle exec rails assets:precompile \
     && chown -R app:app $APP_HOME \
-    && apk del .build-deps            
+    && apk del .build-deps
+
 
 COPY --chown=app:app . $APP_HOME
 
 USER app
 
 EXPOSE 3000
+
 
 COPY --chown=app:app config/docker/docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
