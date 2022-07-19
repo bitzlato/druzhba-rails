@@ -32,6 +32,7 @@ ru:
       chains: 'Блокчейны'
       deals: 'Сделки'
       tokens: 'Токены'
+      payment_methods: Платежные системы
 
   are_you_sure: Вы уверены?
 
