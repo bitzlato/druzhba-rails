@@ -16,29 +16,29 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
-  vault:
-    image: vault:1.6.7
-    volumes:
-      - .:/vault
-    expose:
-      - 8200
-    ports:
-      - "8200:8200"
-    environment:
-      SKIP_SETCAP: 1
-      VAULT_TOKEN: changeme
-      VAULT_DEV_ROOT_TOKEN_ID: changeme
-      VAULT_ADDR: http://vault:8200
+#  vault:
+#    image: vault:1.6.7
+#    volumes:
+#      - .:/vault
+#    expose:
+#      - 8200
+#    ports:
+#      - "8200:8200"
+#    environment:
+#      SKIP_SETCAP: 1
+#      VAULT_TOKEN: changeme
+#      VAULT_DEV_ROOT_TOKEN_ID: changeme
+#      VAULT_ADDR: http://vault:8200
   backend:
     build: .
     volumes:
       - .:/druzhba_rails
     ports:
-      - "9771:3000"
+      - "9771:9771"
     depends_on:
       - db
       - rabbitmq
-      - vault
+#      - vault
     environment:
       DRUZHBA_DATABASE_HOST: db
       DRUZHBA_DATABASE_USERNAME: postgres

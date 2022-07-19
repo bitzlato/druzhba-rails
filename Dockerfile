@@ -32,6 +32,7 @@ RUN set -x \
     && chown -R app:app $APP_HOME \
     && apk del .build-deps
 
+RUN RAILS_ENV=production bundle exec rails assets:precompile
 
 COPY --chown=app:app . $APP_HOME
 
@@ -42,4 +43,5 @@ EXPOSE 3000
 
 COPY --chown=app:app config/docker/docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["bundle", "exec", "puma", "--config", "config/puma.rb"]
+CMD ["bundle", "exec", "foreman", "start"]
+#, "&&", "bundle", "exec", "ruby", "./lib/amqp_daemon.rb", "blockchain_events"

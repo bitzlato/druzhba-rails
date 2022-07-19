@@ -11,6 +11,7 @@ tmp
 log
 test
 config/deploy
+public/assets
 public/packs
 public/packs-test
 node_modules

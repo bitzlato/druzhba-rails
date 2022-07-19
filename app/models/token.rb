@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Token < ApplicationRecord
-  include Vault::EncryptedModel
+  # include Vault::EncryptedModel
 
-  vault_lazy_decrypt!
-  vault_attribute :signer_private_key_hex
+  # vault_lazy_decrypt!
+  # vault_attribute :signer_private_key_hex
 
   belongs_to :chain
 
