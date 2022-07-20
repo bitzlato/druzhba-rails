@@ -1,0 +1,18 @@
+ru:
+  admin:
+    chains:
+      index:
+        title: Блокчейны
+        new: Создать блокчейн
+      edit:
+        title: Редактирование блокчейна
+      new:
+        title: Создание блокчейна
+    tokens:
+      index:
+        title: Токены
+        new: Создать токен
+      edit:
+        title: Редактирование токена
+      new:
+        title: Создание токена
