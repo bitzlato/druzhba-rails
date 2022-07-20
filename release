@@ -6,4 +6,6 @@ git commit -m `semver` && \
 # git tag -a `semver` -m `semver` && \
 git push origin
 
-bundle exec cap production deploy
+docker build -t nexus.lgk.one:5000/druzhba-rails:`semver` . && \
+docker push nexus.lgk.one:5000/druzhba-rails:`semver` && \
+docker push nexus.lgk.one:5000/druzhba-rails:latest
