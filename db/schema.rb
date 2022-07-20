@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_16_101935) do
+ActiveRecord::Schema.define(version: 2022_07_20_073025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 2022_07_16_101935) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "active", default: true, null: false
   end
 
   create_table "rates", force: :cascade do |t|
@@ -152,6 +153,7 @@ ActiveRecord::Schema.define(version: 2022_07_16_101935) do
     t.string "signer_address"
     t.string "signer_private_key_hex_encrypted"
     t.integer "fee"
+    t.string "signer_private_key_hex"
     t.index ["chain_id"], name: "index_tokens_on_chain_id"
   end
 
