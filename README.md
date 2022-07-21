@@ -1,12 +1,15 @@
 # README
 
 ## ENV variables
+
+```
 RAILS_ROOT:
 DRUZHBA_SECRET_KEY_BASE: 
 DRUZHBA_DATABASE_HOST: db
 DRUZHBA_DATABASE_USERNAME: postgres
 DRUZHBA_DATABASE_PASSWORD: password
 DRUZHBA_RABBITMQ_URL: amqp://guest:guest@localhost:5672
+```
 
 ## Флоу по диспуту
 * Участник сделки заходит на страницу сделки
