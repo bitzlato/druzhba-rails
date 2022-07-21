@@ -9,6 +9,7 @@ RSpec.describe Api::PaymentMethods, type: :request do
     %w[
       id
       name
+      active
     ]
   end
 

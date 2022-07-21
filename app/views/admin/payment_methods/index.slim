@@ -1,0 +1,21 @@
+.container
+  h1= t(".title")
+  div
+    div.mb-2.float-left= t 'application.index.total_records', count: payment_methods.count
+    div.float-right =link_to t('.new'), new_admin_payment_method_path, class: 'btn btn-sm btn-secondary'
+  table.table.table-striped.table-hover
+    thead.thead-dark
+      tr
+        th= PaymentMethod.human_attribute_name :name
+        th= PaymentMethod.human_attribute_name :active
+        th
+    tbody
+      - payment_methods.each do |payment_method|
+        tr
+          td= payment_method.name
+          td= payment_method.active
+          td
+            = link_to t('buttons.edit'), edit_admin_payment_method_path(payment_method), class: 'btn btn-sm btn-secondary'
+            br
+            = link_to t('buttons.destroy'), admin_payment_method_path(payment_method), class: 'btn btn-sm btn-secondary', method: :delete, 'data-confirm': t('are_you_sure')
+  = paginate payment_methods

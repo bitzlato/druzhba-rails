@@ -23,3 +23,6 @@ ru:
         signer_address: Подпись
         signer_private_key_hex_encrypted: Ключ подписи
         fee: Комиссия
+      payment_method:
+        name: Название
+        active: Активно
