@@ -1,0 +1,4 @@
+.py-3= back_link send("admin_#{record.class.model_name.plural}_path")
+h1= record.model_name.human + ' #' + record.id.to_s
+hr
+= render 'attributes', item: record

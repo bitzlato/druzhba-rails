@@ -4,9 +4,12 @@ ru:
       chain:
         one: Блокчейн
         many: Блокчейны
+        other: Блокчейны
     attributes:
       chain:
         name: Название
+        chain_id: Id блокчейна
+        chain_type: Тип блокчейна
         explorer_address: Exporer адреса
         explorer_token: Exporer токена
         explorer_tx: Exporer транзакции
