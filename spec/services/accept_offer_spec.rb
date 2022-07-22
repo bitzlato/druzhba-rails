@@ -22,7 +22,7 @@ RSpec.describe AcceptOffer do
 
       it 'create new valid deal with internal id and signature' do
         expect { accepter.call }.to change(Deal, :count).by(1)
-        expect(accepter.deal.attributes).to include('internal_id' => 1, 'signature' => kind_of(String))
+        expect(accepter.deal.attributes).to include('internal_id' => 3, 'signature' => kind_of(String))
       end
     end
 

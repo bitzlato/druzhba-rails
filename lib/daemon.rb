@@ -7,6 +7,8 @@ raise 'Daemon name must be provided.' if ARGV.size.zero?
 name = ARGV[0]
 worker = "Daemons::#{name.camelize}".constantize.new
 
+logger = Rails.logger
+
 terminate = proc do
   logger.info 'Terminating worker ..'
   worker.stop

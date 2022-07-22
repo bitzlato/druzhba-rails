@@ -9,6 +9,7 @@ david_and_adam_deal:
   deadline_at: '2020-01-01 10:30'
   internal_id: 0
   signature: 'x'
+  token: usdt
 
 david_and_piter_deal:
   seller: david
@@ -21,6 +22,7 @@ david_and_piter_deal:
   deadline_at: '2020-01-01 11:30'
   internal_id: 1
   signature: 'x'
+  token: usdt
 
 david_and_mike_deal:
   seller: david
@@ -33,3 +35,4 @@ david_and_mike_deal:
   deadline_at: '2020-01-01 12:30'
   internal_id: 2
   signature: 'x'
+  token: usdt

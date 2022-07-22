@@ -126,7 +126,7 @@ RSpec.describe Api::Offers, type: :request do
     context 'with valid attributes' do
       it 'create new deal' do
         expect { put_request }.to change(Deal, :count).by(1)
-        expect(json_response).to include('internal_id' => 1)
+        expect(json_response).to include('internal_id' => 3)
         expect(response.status).to eq 200
       end
     end
