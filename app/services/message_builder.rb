@@ -34,12 +34,12 @@ class MessageBuilder
   end
 
   def broadcast_new_message
-    deal.chat_members.each do |chat_member|
-      next if chat_member == author
-      next unless new_message.available_for?(chat_member)
+    deal.deal_members.each do |deal_member|
+      next if deal_member == author
+      next unless new_message.available_for?(deal_member)
 
-      ActionCable.server.broadcast Deal.chat_identifier_for(deal.id, chat_member),
-                                   Api::Entities::Message.represent(new_message, requester: chat_member)
+      ActionCable.server.broadcast Deal.chat_identifier_for(deal.id, deal_member),
+                                   Api::Entities::Message.represent(new_message, requester: deal_member)
     end
   end
 end

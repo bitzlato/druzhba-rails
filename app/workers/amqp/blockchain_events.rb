@@ -31,9 +31,9 @@ module AMQP
     def process_signer_changed; end
 
     def process_state_changed
-      ActiveRecord::Base.transaction do
-        deal = Deal.find_by!(internal_id: payload['dealId'])
+      deal = Deal.find_by!(internal_id: payload['dealId'])
 
+      ActiveRecord::Base.transaction do
         attributes = {
           block_number: payload['blockNumber'],
           tx_index: payload['txIndex'],
@@ -49,6 +49,14 @@ module AMQP
         end
 
         deal.update_state_from_history!
+      end
+
+      broadcast_deal(deal) if deal.present?
+    end
+
+    def broadcast_deal(deal)
+      deal.deal_members.each do |deal_member|
+        ActionCable.server.broadcast deal_member, Api::Entities::UserNotifications::Deal.represent(deal)
       end
     end
     # rubocop:enable Metrics/MethodLength
