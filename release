@@ -6,7 +6,7 @@ git commit -m `semver` && \
 # git tag -a `semver` -m `semver` && \
 git push origin
 
-TAG=`semver format "%M.%m.%p%s"`
+TAG=`./bin/semver format "%M.%m.%p%s"`
 docker build -t nexus.lgk.one:5000/druzhba-rails:${TAG} . && \
 docker push nexus.lgk.one:5000/druzhba-rails:${TAG} && \
 docker push nexus.lgk.one:5000/druzhba-rails:latest
