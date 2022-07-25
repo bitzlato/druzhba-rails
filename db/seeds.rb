@@ -14,7 +14,9 @@ chain = Chain.create!({
                         explorer_address: 'https://goerli.etherscan.io/address/',
                         explorer_token: 'https://goerli.etherscan.io/token/',
                         explorer_tx: 'https://goerli.etherscan.io/tx/',
-                        metamask_rpc: 'https://goerli.infura.io/v3/'
+                        metamask_rpc: 'https://goerli.infura.io/v3/',
+                        chain_id: 1,
+                        chain_type: 'ETH'
                       })
 
 xeenus = Token.create!({
@@ -50,13 +52,16 @@ offer_two = Offer.create!({
                             rate: 0.3e0, min: 0.4e1, max: 0.4e1, terms: 'Best trader', active: true
                           })
 
+Deal.connection.schema_cache.clear!
+Deal.reset_column_information
+
 started_deal = Deal.create!({
-                              id: 1, seller: seller, buyer: buyer, offer: offer_one, fee: 0, locked: 2,
+                              id: 1, seller: seller, buyer: buyer, offer: offer_one, fee: 0, locked: 2, token: xeenus,
                               state: 'started', deadline_at: 1.week.since, internal_id: 1, signature: '1'
                             })
 deal = Deal.create!({
                       id: 2, seller: seller, buyer: buyer, offer: offer_two, fee: 0, locked: 4, state: 'draft',
-                      deadline_at: 1.week.since, internal_id: 1,
+                      deadline_at: 1.week.since, internal_id: 2, token: xeenus,
                       signature: '80f8f5426f5369ffbf75dc9c4b5e377c2f7bb2787cced16900e463f02bd2203576a0e7404e3f45c618f4cbdda726e20ed367a6fcaf8be23ee4af6a377f6089021c'
                     })
 

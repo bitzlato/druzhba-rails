@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_20_073025) do
+ActiveRecord::Schema.define(version: 2022_07_22_074624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2022_07_20_073025) do
     t.string "metamask_rpc", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "chain_id", null: false
+    t.string "chain_type", null: false
   end
 
   create_table "chats", force: :cascade do |t|
@@ -84,9 +86,14 @@ ActiveRecord::Schema.define(version: 2022_07_20_073025) do
     t.datetime "deadline_at", null: false
     t.integer "internal_id", null: false
     t.string "signature", null: false
+    t.bigint "token_id", null: false
+    t.boolean "finished", default: false, null: false
     t.index ["buyer_id"], name: "index_deals_on_buyer_id"
+    t.index ["finished"], name: "index_deals_on_finished"
     t.index ["offer_id"], name: "index_deals_on_offer_id"
     t.index ["seller_id"], name: "index_deals_on_seller_id"
+    t.index ["token_id", "internal_id"], name: "index_deals_on_token_id_and_internal_id", unique: true, where: "(finished = false)"
+    t.index ["token_id"], name: "index_deals_on_token_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -154,6 +161,7 @@ ActiveRecord::Schema.define(version: 2022_07_20_073025) do
     t.string "signer_private_key_hex_encrypted"
     t.integer "fee"
     t.string "signer_private_key_hex"
+    t.index ["chain_id", "address"], name: "index_tokens_on_chain_id_and_address", unique: true
     t.index ["chain_id"], name: "index_tokens_on_chain_id"
   end
 
@@ -169,6 +177,7 @@ ActiveRecord::Schema.define(version: 2022_07_20_073025) do
   add_foreign_key "balances", "users"
   add_foreign_key "deal_histories", "deals"
   add_foreign_key "deals", "offers"
+  add_foreign_key "deals", "tokens"
   add_foreign_key "deals", "users", column: "buyer_id"
   add_foreign_key "deals", "users", column: "seller_id"
   add_foreign_key "messages", "chats"

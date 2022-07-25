@@ -29,12 +29,16 @@ class AcceptOffer
     @deal = Deal.new(
       offer: offer,
       seller_id: offer.user_id,
+      token: offer.token,
       **deal_params
     )
   end
 
   def set_internal_id
-    @deal.internal_id = Deal.active.maximum(:internal_id).to_i + 1
+    existed_internal_ids = Deal.not_finished.where(token: offer.token).order(:id).pluck(:internal_id)
+    new_internal_id = (1..existed_internal_ids.last.to_i + 1).without(existed_internal_ids).first
+
+    @deal.internal_id = new_internal_id
   end
 
   def set_deadline
