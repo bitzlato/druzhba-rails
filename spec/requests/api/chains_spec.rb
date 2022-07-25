@@ -14,6 +14,8 @@ RSpec.describe Api::Chains, type: :request do
       explorer_token
       explorer_tx
       metamask_rpc
+      chain_id
+      chain_type
     ]
   end
 
