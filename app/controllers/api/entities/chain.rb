@@ -9,6 +9,8 @@ module Api
       expose :explorer_token, documentation: { type: String, desc: 'Blockchain explorer token url.' }
       expose :explorer_tx, documentation: { type: String, desc: 'Blockchain explorer tx url' }
       expose :metamask_rpc, documentation: { type: String, desc: 'JSON-RPC endpoint for metamask' }
+      expose :chain_id, documentation: { type: Integer, desc: 'Blockchain id' }
+      expose :chain_type, documentation: { type: String, desc: 'Blockchain type' }
     end
   end
 end
