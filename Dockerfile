@@ -4,6 +4,7 @@ ENV APP_HOME=/druzhba_rails \
     TZ=UTC
 
 COPY Gemfile Gemfile.lock $APP_HOME/
+COPY package.json *yarn* $APP_HOME/
 
 WORKDIR $APP_HOME
 
@@ -28,11 +29,9 @@ RUN set -x \
     && gem update bundler \
     && yarn \
     && bundle install --jobs=$(nproc) --system --binstubs=/usr/local/bin \
-    && RAILS_ENV=production bundle exec rails assets:precompile \
+    && bundle exec rails assets:precompile \
     && chown -R app:app $APP_HOME \
     && apk del .build-deps
-
-RUN RAILS_ENV=production bundle exec rails assets:precompile
 
 COPY --chown=app:app . $APP_HOME
 

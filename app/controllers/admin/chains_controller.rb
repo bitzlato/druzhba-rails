@@ -48,7 +48,9 @@ module Admin
     private
 
     def chain_params
-      params.require(:chain).permit(:name, :explorer_address, :explorer_token, :explorer_tx, :metamask_rpc)
+      params.require(:chain).permit(
+        :name, :chain_id, :chain_type, :explorer_address, :explorer_token, :explorer_tx, :metamask_rpc
+      )
     end
   end
 end

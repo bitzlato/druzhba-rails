@@ -44,7 +44,7 @@ services:
       DRUZHBA_DATABASE_USERNAME: postgres
       DRUZHBA_DATABASE_PASSWORD: password
       DRUZHBA_RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
-      DRUZHBA_SECRET_KEY_BASE: test
+      DRUZHBA_SECRET_KEY_BASE: "276ci|^nVcx{^Hj#(zo_H@bcz0cx7:V8~*aOi-AC{G4+%r1EKu^Y[:@LHl4mM:^|"
       RAILS_ROOT: /druzhba_rails
       RAILS_ENV: production
       VAULT_TOKEN: changeme

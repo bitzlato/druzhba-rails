@@ -11,6 +11,8 @@ ru:
         explorer_token: Exporer токена
         explorer_tx: Exporer транзакции
         metamask_rpc: Metamask rpc
+        chain_id: Номер блокчейна
+        chain_type: Тип блокчейна
       token:
         chain_id: Блокчейн
         chain: Блокчейн
