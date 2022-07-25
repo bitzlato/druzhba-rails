@@ -26,7 +26,7 @@ class Deal < ApplicationRecord
     cleared_arbiter: 9
   }, _default: :draft
 
-  def chat_members
+  def deal_members
     [seller, buyer, offer.arbiter].compact
   end
 
